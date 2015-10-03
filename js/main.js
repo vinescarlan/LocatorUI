@@ -105,17 +105,32 @@ function displayHints(str) {
 			hints.appendChild(p);
 		}
 	}
+
+	function setInput() {
+		var str = this.innerHTML.replace("<strong>", "");
+		str = str.replace("</strong>", "");
+		searchBox.value = str;
+		hints.innerHTML = null;
+	}
+
+	var pHints = hints.querySelectorAll("p");
+	for (i = 0, len = pHints.length; i < len; i++) {
+		pHints[i].addEventListener("click", setInput);
+	}
 }
 
 function addNearbyBranch() {
 	// Loop throught locations array and check for match with searchBox content
 	var content = searchBox.value;
 	var container = document.getElementById("nearby-branch");
-	container.innerHTML = "<h3>Nearby branches</h3>";
-	container.innerHTML += "<p>No nearby branches</p>";
-	if (content === "") return false;
+	if (content === "") {
+		container.innerHTML = "<h3>Nearby branches</h3>";
+		container.innerHTML += "<p>No nearby branches</p>";
+		return false;
+	}
 	for (var i = 0, len = locations.length; i < len; i++) {
 		if (content == locations[i].stringLocation) {
+			container.innerHTML = "<h3>Nearby branches</h3>";
 			var nearbyNum = locations[i].nearbyLocations.length;
 			for (var j = 0; j < nearbyNum; j++) {
 				var nearbys = locations[i].nearbyLocations[j];
