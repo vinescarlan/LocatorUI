@@ -1,0 +1,97 @@
+body {
+  color: #444;
+  font-size: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #fdfdfd;
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+a {
+  color: #00c8f8;
+  text-decoration: none;
+}
+#locator-form {
+  margin: 5px;
+  width: 98%;
+  max-width: 500px;
+  position: relative;
+}
+[alt="magnifier"] {
+  width: 21px;
+  height: 21px;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+}
+[type="text"] {
+  font-size: 1em;
+  width: 70%;
+  border: none;
+  outline: none;
+  padding: 10px 10px 10px 40px;
+  float: left;
+  box-shadow: 1px 1px 1px #444;
+}
+[type="button"] {
+  color: #fff;
+  background: #00a4d3;
+  border: none;
+  outline: none;
+  padding: 10px;
+  margin-left: 5px;
+  box-shadow: 1px 1px 1px #444;
+}
+#google-map {
+  background: #aedd94;
+  width: 100%;
+  max-width: 950px;
+  height: 300px;
+  border: 1px solid #629c44;
+  margin: 10px 0;
+}
+#advance-search {
+  display: block;
+  text-align: center;
+}
+#nearby-stores {
+  margin: 10px 10px 20px;
+  color: #fff;
+  width: auto;
+}
+#nearby-stores * {
+  letter-spacing: 0.8;
+  padding: 10px;
+  margin: 0;
+}
+#nearby-stores h3 {
+  background: #92d36e;
+}
+#nearby-stores p {
+  background: #00c8f8;
+  position: relative;
+}
+#nearby-stores p:nth-child(2n+0) {
+  background: #91e4fb;
+}
+#nearby-stores p:after {
+  content: url("../img/pin.png");
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+footer {
+  background: #444;
+  padding: 20px 0 10px;
+}
+footer p {
+  color: #fff;
+  margin: 5px;
+  text-align: center;
+}
+footer img {
+  display: block;
+  margin: 10px auto;
+  width: 40px;
+  height: 40px;
+}
