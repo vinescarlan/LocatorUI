@@ -42,6 +42,23 @@ a {
   margin-left: 5px;
   box-shadow: 1px 1px 1px #444;
 }
+#search-hints {
+  background: #fdfdfd;
+  height: auto;
+  max-height: 210px;
+  width: 300px;
+  box-shadow: 0 0 10px #444;
+  position: absolute;
+  top: 45px;
+  overflow-y: auto;
+}
+#search-hints p {
+  color: #999;
+  line-height: 1.5;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px 5px;
+  margin: 0;
+}
 #google-map {
   background: #aedd94;
   width: 100%;
