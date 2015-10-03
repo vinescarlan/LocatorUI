@@ -11,6 +11,9 @@ a {
   color: #00c8f8;
   text-decoration: none;
 }
+strong {
+	color: #444;
+}
 #locator-form {
   margin: 5px;
   width: 98%;
