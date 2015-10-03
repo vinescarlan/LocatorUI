@@ -70,27 +70,27 @@ strong {
   border: 1px solid #629c44;
   margin: 10px 0;
 }
-#nearby-stores {
+#nearby-branch {
   margin: 10px 10px 20px;
   color: #fff;
   width: auto;
 }
-#nearby-stores * {
+#nearby-branch * {
   letter-spacing: 0.8;
   padding: 10px;
   margin: 0;
 }
-#nearby-stores h3 {
+#nearby-branch h3 {
   background: #92d36e;
 }
-#nearby-stores p {
+#nearby-branch p {
   background: #00c8f8;
   position: relative;
 }
-#nearby-stores p:nth-child(2n+0) {
+#nearby-branch p:nth-child(2n+0) {
   background: #91e4fb;
 }
-#nearby-stores p:after {
+#nearby-branch p:after {
   content: url("../img/pin.png");
   position: absolute;
   right: 15px;
