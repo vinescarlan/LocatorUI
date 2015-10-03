@@ -19,6 +19,8 @@ function displayHints(str) {
 	// So previous searches will be cleared
 	var hints = document.getElementById("search-hints");
 	hints.innerHTML = null;
+	// If search box value is empty, stop further execution of code
+	if (str === "") return false;
 	// "str" argument is the search box value
 	var pattern = new RegExp(str, "i");
 	// Loop throught the "locations" array
