@@ -75,7 +75,8 @@ var locations = [
 
 // Call this function everytime the user input a character in search box
 function displayHints(str) {
-	if (window.event.which == 38 || window.event.which == 40) return false;
+	if (window.event.which == 38 || window.event.which == 40 ||
+		window.event.which == 13) return false;
 	// Access search hints box, then make it empty
 	// So previous searches will be cleared
 	var hints = document.getElementById("search-hints");
@@ -139,6 +140,12 @@ function highlightText() {
 	} else if (window.event.which == 40) {
 		if (pos < pHints.length - 1) pos++;
 		pHints[pos].style.background = "#efd";
+	} else if (window.event.which == 13) {
+		var str = pHints[pos].innerHTML.replace("<strong>", "");
+		str = str.replace("</strong>", "");
+		searchBox.value = str;
+		addNearbyBranch();
+		document.getElementById("search-hints").innerHTML = null;
 	}
 
 }
