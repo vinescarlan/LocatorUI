@@ -73,9 +73,9 @@ var locations = [
 	}
 ];
 
-
 // Call this function everytime the user input a character in search box
 function displayHints(str) {
+	if (window.event.which == 38 || window.event.which == 40) return false;
 	// Access search hints box, then make it empty
 	// So previous searches will be cleared
 	var hints = document.getElementById("search-hints");
@@ -114,10 +114,36 @@ function displayHints(str) {
 	}
 
 	var pHints = hints.querySelectorAll("p");
+	if (pHints.length !== 0) pHints[0].style.background = "#efd";
 	for (i = 0, len = pHints.length; i < len; i++) {
 		pHints[i].addEventListener("click", setInput);
 	}
 }
+
+var pos = 0; // For tracking pHints position
+
+function highlightText() {
+	var pHints = document.querySelectorAll("#search-hints p");
+	if (pHints === undefined || pHints.length === 0	) return false;
+	
+	// Change all pHints background to white
+	for (var i = 0, len = pHints.length; i < len; i++) {
+		pHints[i].style.background = "#fdfdfd";
+	}
+
+	// When up arrow key (38)
+	if (window.event.which == 38) {
+		if (pos > 0) pos--;
+		pHints[pos].style.background = "#efd";
+		// or down arrow key (40) is press
+	} else if (window.event.which == 40) {
+		if (pos < pHints.length - 1) pos++;
+		pHints[pos].style.background = "#efd";
+	}
+
+}
+
+document.body.addEventListener("keydown", highlightText);
 
 function addNearbyBranch() {
 	// Loop throught locations array and check for match with searchBox content
