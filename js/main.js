@@ -118,6 +118,8 @@ function displayHints(str) {
 		str = str.replace("</strong>", "");
 		searchBox.value = str;
 		hints.innerHTML = null;
+		// Reset pos to 0
+		pos = 0;
 	}
 	
 	// Get all displayed hints
@@ -170,6 +172,8 @@ function highlightText() {
 				break;
 			}
 		}
+		// Reset pos to 0
+		pos = 0;
 	}
 
 }
