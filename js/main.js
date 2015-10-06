@@ -4,33 +4,16 @@ var searchBox = document.getElementById("search-box");
 // Access search button
 var searchBtn = document.getElementById("search-button");
 
-var locations = [
-	{
-		stringLocation: "LBC G/F Araneta Square Rizal Avenue Corner Samson Road Monumento Caloocan, 1400 Metro Manila",
-		nearbyLocations: [1, 2, 3, 4],
-		src: "pb=!1m18!1m12!1m3!1d3860.0021672727776!2d120.98450562048973!3d14.655818358380062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x4ac6b2475ba01163!2sLBC!5e0!3m2!1sen!2sph!4v1444111061730"
-	},
-	{
-		stringLocation: "LBC G/F Victory Central Mall Rizal Ave Monumento 072, Caloocan, 1400 Metro Manila",
-		nearbyLocations: [0, 2, 3, 4],
-		src: "pb=!1m18!1m12!1m3!1d3860.0021207311065!2d120.98231100000001!3d14.655821000000019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b42bf34f7895%3A0x6a41b8fd8f5cf68d!2sLBC!5e0!3m2!1sen!2sph!4v1444104464368"
-	},
-	{
-		stringLocation: "LBC Asuncion Corner Loreto St. Morning Breeze Subd 84, Caloocan 1400 Metro Manila",
-		nearbyLocations: [0, 1, 3, 4],
-		src: "pb=!1m18!1m12!1m3!1d3860.001618641819!2d120.98453780699789!3d14.655849497638203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x2e69fc77e0b8e434!2sLbc!5e0!3m2!1sen!2sph!4v1444111107142"
-	},
-	{
-		stringLocation: "LBC 95 10th Ave. Cor. Heroes 65, Caloocan 1408 Metro Manila",
-		nearbyLocations: [0, 1, 2, 4],
-		src: "pb=!1m18!1m12!1m3!1d3860.048065634142!2d120.9793879656893!3d14.653213024776457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x713e4f176a4f9658!2sLBC!5e0!3m2!1sen!2sph!4v1444111284311"
-	},
-	{
-		stringLocation: "LBC 1604 Rizal Ave. Ext. Between 10th And 11th Ave 68, Caloocan 1400 Metro Manila",
-		nearbyLocations: [0, 1, 2, 3],
-		src: "pb=!1m18!1m12!1m3!1d3860.03398605097!2d120.98422667075215!3d14.654012273837289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x15f5ed1109de8d49!2sLBC!5e0!3m2!1sen!2sph!4v1444111210308"
+// Get JSON file via AJAX request
+var xhttp = new XMLHttpRequest(), locations;
+xhttp.onreadystatechange = function () {
+	if (xhttp.readyState == 4 && xhttp.status == 200) {
+		// Convert responseText to JSON and store in "locations"
+		locations = JSON.parse(xhttp.responseText);
 	}
-];
+};
+xhttp.open("GET", "js/locations.json", true);
+xhttp.send(null);
 
 // Call this function everytime the user input a character in search box
 function displayHints(str) {
