@@ -13,8 +13,8 @@ xhttp.onreadystatechange = function () {
 		locations = JSON.parse(xhttp.responseText);
 		// Load all branches
 		loadMap("pb=!1m12!1m8!1m3!1d15440.032333793673!2d120.98674643710937" +
-				"!3d14.655482563301007!3m2!1i1024!2i768!4f13.1!2m1!1slbc" +
-				"!5e0!3m2!1sen!2sph!4v1444102396793");
+			"!3d14.655482563301007!3m2!1i1024!2i768!4f13.1!2m1!1slbc" +
+			"!5e0!3m2!1sen!2sph!4v1444102396793");
 	}
 };
 xhttp.open("GET", "js/locations.json", true);
@@ -164,13 +164,15 @@ searchBox.onkeyup = function () {
 };
 
 // Google Map
-function loadMap() {
-	// Find a match between searchBox input and locations
-	for (var i = 0, len = locations.length; i < len; i++) {
+function loadMap(url) {
+	// Get map container
+	var map = document.getElementById("google-map");
+	// Check if url argument is not undefined, if so, set map src = url
+	if (url !== undefined) map.src = "https://www.google.com/maps/embed?" + url;
+	// Else, find a match between searchBox input and locations
+		for (var i = 0, len = locations.length; i < len; i++) {
 		if (searchBox.value == locations[i].stringLocation) {
 			// When match is found, set iframe's src to current "locations" src
-			// Get map container
-			var map = document.getElementById("google-map");
 			// Set src
 			map.src = "https://www.google.com/maps/embed?" + locations[i].src;
 			break;
