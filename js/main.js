@@ -83,7 +83,7 @@ function highlightText() {
 		pHints[i].style.background = "#fdfdfd";
 	}
 
-	// When up arrow key (38)
+	// When up arrow key (38) is press
 	if (window.event.which == 38) {
 		if (pos > 0) pos--; // Prevent negative numbers
 		pHints[pos].style.background = "#efd";
@@ -94,6 +94,7 @@ function highlightText() {
 		if (pos < pHints.length - 1) pos++;
 		pHints[pos].style.background = "#efd";
 		pHints[pos].scrollIntoView();
+		// or enter key (13) is press
 	} else if (window.event.which == 13) {
 		// Remove the strong elements before setting input
 		var str = pHints[pos].innerHTML.replace("<strong>", "");
