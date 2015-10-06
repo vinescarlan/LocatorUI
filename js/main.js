@@ -155,6 +155,12 @@ function highlightText() {
 		searchBox.value = str;
 		addNearbyBranch();
 		document.getElementById("search-hints").innerHTML = null;
+		for (i = 0, len = locations.length; i < len; i++) {
+			if (searchBox.value == locations[i].stringLocation) {
+				loadMap(locations[i].src);
+				break;
+			}
+		}
 	}
 
 }
