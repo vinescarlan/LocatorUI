@@ -117,14 +117,18 @@ function displayHints(str) {
 	}
 
 	function setInput() {
+		// Remove the strong elements before setting input
 		var str = this.innerHTML.replace("<strong>", "");
 		str = str.replace("</strong>", "");
 		searchBox.value = str;
 		hints.innerHTML = null;
 	}
-
+	
+	// Get all displayed hints
 	var pHints = hints.querySelectorAll("p");
+	// If there's a hint displayed, set bgcolor of the first one to light green
 	if (pHints.length !== 0) pHints[0].style.background = "#efd";
+	// Listen for click event to all hints displayed
 	for (i = 0, len = pHints.length; i < len; i++) {
 		pHints[i].addEventListener("click", setInput);
 	}
@@ -133,7 +137,9 @@ function displayHints(str) {
 var pos = 0; // For tracking pHints position
 
 function highlightText() {
+	// Get all displayed hints
 	var pHints = document.querySelectorAll("#search-hints p");
+	// If there is no hints displayed, STOP
 	if (pHints === undefined || pHints.length === 0) return false;
 
 	// Change all pHints background to white
@@ -143,20 +149,25 @@ function highlightText() {
 
 	// When up arrow key (38)
 	if (window.event.which == 38) {
-		if (pos > 0) pos--;
+		if (pos > 0) pos--; // Prevent negative numbers
 		pHints[pos].style.background = "#efd";
 		// or down arrow key (40) is press
 	} else if (window.event.which == 40) {
+		// Prevent numbers higher than no. of displayed hints
 		if (pos < pHints.length - 1) pos++;
 		pHints[pos].style.background = "#efd";
 	} else if (window.event.which == 13) {
+		// Remove the strong elements before setting input
 		var str = pHints[pos].innerHTML.replace("<strong>", "");
 		str = str.replace("</strong>", "");
 		searchBox.value = str;
 		addNearbyBranch();
+		// Hide the hints container
 		document.getElementById("search-hints").innerHTML = null;
+		// Find a match between searchBox input and locations
 		for (i = 0, len = locations.length; i < len; i++) {
 			if (searchBox.value == locations[i].stringLocation) {
+				// When match is found, set iframe's src to current "locations" src
 				loadMap(locations[i].src);
 				break;
 			}
@@ -165,31 +176,44 @@ function highlightText() {
 
 }
 
+// Call highlightText function in each keydown
 document.body.addEventListener("keydown", highlightText);
 
 function addNearbyBranch() {
 	// Loop throught locations array and check for match with searchBox content
 	var content = searchBox.value;
+	// Get nearby branch section
 	var container = document.getElementById("nearby-branch");
+	// If value of searchbox is empty
 	if (content === "") {
+		// Display "no nearby branches"
 		container.innerHTML = "<h3>Nearby branches</h3>";
 		container.innerHTML += "<p>No nearby branches</p>";
-		return false;
+		return false; // Then STOP
 	}
+	// If search-box has input value, loop throught "locations"
 	for (var i = 0, len = locations.length; i < len; i++) {
+		// Check if search-box value is equal to current "locations".stringlocation
 		if (content == locations[i].stringLocation) {
+			// Add heading first
 			container.innerHTML = "<h3>Nearby branches</h3>";
+			// Get nearbyNum property value
 			var nearbyNum = locations[i].nearbyLocations.length;
+			// Loop through it
 			for (var j = 0; j < nearbyNum; j++) {
+				// J = nearbyNum item position
 				var nearbys = locations[i].nearbyLocations[j];
+				// Generate a p element containing the stringLocation
 				var p = document.createElement("p");
 				p.innerHTML = locations[nearbys].stringLocation;
+				// Finally, append it
 				container.appendChild(p);
 			}
 		}
 	}
 }
 
+// Display nearby branches when the hint is clicked
 searchBtn.onclick = addNearbyBranch;
 
 searchBox.onkeyup = function () {
@@ -202,7 +226,9 @@ searchBox.onkeyup = function () {
 
 // Google Map
 function loadMap(url) {
+	// Get map container
 	var map = document.getElementById("google-map");
+	// Set src
 	map.src = "https://www.google.com/maps/embed?" + url;
 }
 // Load all branches
