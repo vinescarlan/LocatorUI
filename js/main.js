@@ -147,11 +147,13 @@ function highlightText() {
 	if (window.event.which == 38) {
 		if (pos > 0) pos--; // Prevent negative numbers
 		pHints[pos].style.background = "#efd";
+		pHints[pos].scrollIntoView();
 		// or down arrow key (40) is press
 	} else if (window.event.which == 40) {
 		// Prevent numbers higher than no. of displayed hints
 		if (pos < pHints.length - 1) pos++;
 		pHints[pos].style.background = "#efd";
+		pHints[pos].scrollIntoView();
 	} else if (window.event.which == 13) {
 		// Remove the strong elements before setting input
 		var str = pHints[pos].innerHTML.replace("<strong>", "");
