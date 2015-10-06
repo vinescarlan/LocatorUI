@@ -193,3 +193,11 @@ searchBox.onkeyup = function () {
 	var that = this.value;
 	displayHints(that);
 };
+
+// Google Map
+function loadMap(url) {
+	var map = document.getElementById("google-map");
+	map.src = "https://www.google.com/maps/embed?" + url;
+}
+// Load all branches
+loadMap("pb=!1m12!1m8!1m3!1d15440.032333793673!2d120.98674643710937!3d14.655482563301007!3m2!1i1024!2i768!4f13.1!2m1!1slbc!5e0!3m2!1sen!2sph!4v1444102396793");
