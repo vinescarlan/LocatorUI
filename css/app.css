@@ -94,6 +94,7 @@ a {
   top: 15px;
 }
 footer {
+  clear: both;
   background: #444;
   padding: 20px 0 10px;
 }
