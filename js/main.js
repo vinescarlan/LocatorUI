@@ -154,8 +154,10 @@ function addNearbyBranch() {
 	}
 }
 
-// Display nearby branches when the hint is clicked
-searchBtn.onclick = addNearbyBranch;
+// Display nearby branches and change map src based on searchbox value
+// when the hint is clicked
+searchBtn.addEventListener("click", addNearbyBranch);
+searchBtn.addEventListener("click", loadMap);
 
 searchBox.onkeyup = function () {
 	// Store value of search box first
