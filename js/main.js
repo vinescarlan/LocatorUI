@@ -142,6 +142,11 @@ function addNearbyBranch() {
 				// Generate a p element containing the stringLocation
 				var p = document.createElement("p");
 				p.innerHTML = locations[nearbys].stringLocation;
+				// listener for click event which will
+				// change map src and searchBox input
+				p.addEventListener("click", setInput);
+				p.addEventListener("click", addNearbyBranch);
+				p.addEventListener("click", loadMap);
 				// Finally, append it
 				container.appendChild(p);
 			}
