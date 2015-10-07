@@ -20,6 +20,17 @@ xhttp.onreadystatechange = function () {
 xhttp.open("GET", "js/locations.json", true);
 xhttp.send(null);
 
+// Change search box value
+function setInput() {
+	// Remove the strong elements before setting input
+	var str = this.innerHTML.replace("<strong>", "");
+	str = str.replace("</strong>", "");
+	searchBox.value = str;
+	document.getElementById("search-hints").innerHTML = null;
+	// Reset pos to 0
+	pos = 0;
+}
+
 // Call this function everytime the user input a character in search box
 function displayHints(str) {
 	if (window.event.which == 38 || window.event.which == 40 ||
@@ -52,16 +63,6 @@ function displayHints(str) {
 			// Display the p element
 			hints.appendChild(p);
 		}
-	}
-
-	function setInput() {
-		// Remove the strong elements before setting input
-		var str = this.innerHTML.replace("<strong>", "");
-		str = str.replace("</strong>", "");
-		searchBox.value = str;
-		hints.innerHTML = null;
-		// Reset pos to 0
-		pos = 0;
 	}
 
 	// Get all displayed hints
@@ -100,13 +101,9 @@ function highlightText() {
 		pHints[pos].scrollIntoView();
 		// or enter key (13) is press
 	} else if (window.event.which == 13) {
-		// Remove the strong elements before setting input
-		var str = pHints[pos].innerHTML.replace("<strong>", "");
-		str = str.replace("</strong>", "");
-		searchBox.value = str;
+		setInput.call(pHints[pos]);
+		// Add nearby branches
 		addNearbyBranch();
-		// Hide the hints container
-		document.getElementById("search-hints").innerHTML = null;
 		// Load map
 		loadMap();
 		// Reset pos to 0
@@ -170,7 +167,7 @@ function loadMap(url) {
 	// Check if url argument is not undefined, if so, set map src = url
 	if (url !== undefined) map.src = "https://www.google.com/maps/embed?" + url;
 	// Else, find a match between searchBox input and locations
-		for (var i = 0, len = locations.length; i < len; i++) {
+	for (var i = 0, len = locations.length; i < len; i++) {
 		if (searchBox.value == locations[i].stringLocation) {
 			// When match is found, set iframe's src to current "locations" src
 			// Set src
